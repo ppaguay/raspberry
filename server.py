@@ -7,7 +7,7 @@ import time
 
 port = 5000
 pygame.init()
-f= open("log.txt","w+")
+f= open("log_server.txt","w+")
 f.write("tiempo1,tiempo2,tiempo4,tiempo4,tiempo5\r\n")     
    
 
