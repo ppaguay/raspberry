@@ -94,11 +94,14 @@ public class ClienteJava {
                     if (sock != null) {
                         sock.close();
                     }
-                    linea = (tiempo1 + "," + tiempo2 + "," + tiempo3 + "," + tiempo4 + "\n");
-                    System.out.println(linea);
+                    linea = (tiempo1 + "," + tiempo2 + "," + tiempo3 + "," + tiempo4 + "\n");                   
                     guardar.write(linea);
+                    guardar.flush();
                     Thread.sleep(30);
                 } catch (Exception e) {
+                    guardar.close();
+                    fw.close();
+                    fw=null;
                     System.out.println("Error al capturar");
                 }
 
