@@ -26,7 +26,6 @@ tiempo_2=ahora.microsecond  #Fin encedido de camara
 while True:
 
         connection, address = serversocket.accept()
-        f= open("log.txt","w+")
         tiempo_3=ahora.microsecond #Inicio captura imagen
         image = webcam.get_image() # capture image
         data = pygame.image.tostring(image,"RGB") # convert captured image to string, use RGB color scheme
