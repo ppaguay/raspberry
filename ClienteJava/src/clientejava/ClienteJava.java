@@ -95,6 +95,7 @@ public class ClienteJava {
                         sock.close();
                     }
                     linea = (tiempo1 + "," + tiempo2 + "," + tiempo3 + "," + tiempo4 + "\n");
+                    System.out.println(linea);
                     guardar.write(linea);
                     Thread.sleep(30);
                 } catch (Exception e) {
