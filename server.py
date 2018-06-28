@@ -4,6 +4,8 @@ import pygame.camera
 import sys
 import time
 
+from datetime import datetime
+
 port = 5000
 pygame.init()
 ahora = datetime.now()
