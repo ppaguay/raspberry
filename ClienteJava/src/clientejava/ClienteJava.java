@@ -48,7 +48,7 @@ public class ClienteJava {
         int bytesRead;
         int current = 0;
         long tiempo1, tiempo2, tiempo3, tiempo4, tiempo5;
-        Date t1 = new Date(System.currentTimeMillis());
+        
         String linea;
 
         OutputStream os = null;
@@ -72,21 +72,21 @@ public class ClienteJava {
             //webcam.setViewSize(new Dimension(176, 144));//windows
             webcam.setViewSize(new Dimension(160, 120));//raspberry
             webcam.open();
-            tiempo1 = t1.getTime();
+            tiempo1 = new java.util.Date().getTime();
             while (true) {
                 try {
                     current++;
                     sock = new Socket(host, puerto);
-                    tiempo2 = t1.getTime();
+                    tiempo2 = new java.util.Date().getTime();
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     ImageIO.write(webcam.getImage(), "jpg", baos);
                     byte[] mybytearray = baos.toByteArray();
-                    tiempo3 = t1.getTime();
+                    tiempo3 = new java.util.Date().getTime();
                     System.out.println("Sending " + current + "(" + mybytearray.length + " bytes)");
                     os = sock.getOutputStream();
                     os.write(mybytearray, 0, mybytearray.length);
                     os.flush();
-                    tiempo4 = t1.getTime();
+                    tiempo4 = new java.util.Date().getTime();
                     System.out.println("Done.");
                     if (os != null) {
                         os.close();
