@@ -1,28 +1,24 @@
-import io
 import socket
-import picamera
+import pygame
+import pygame.camera
+import sys
+import time
 
-server_socket = socket.socket()
-server_socket.bind(('0.0.0.0', 8000))
-server_socket.listen(0)
-    
-with picamera.PiCamera() as camera:
-    camera.resolution = (640, 480)
-    camera.start_preview()
+port = 5000
+pygame.init()
 
-    connection = server_socket.accept()[0].makefile('wb')
-    print("Connecting")
+serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+serversocket.bind(("",port))
+serversocket.listen(1)
 
-    try:
-        stream = io.BytesIO()
-        camera.capture(stream, 'jpeg')
-        stream.seek(0)
-        connection.write(stream.read())
-        stream.seek(0)
-        stream.truncate()
+pygame.camera.init()
+webcam = pygame.camera.Camera("/dev/video0",(320,240))
+webcam.start()
 
-    finally:
+while True:
+        connection, address = serversocket.accept()
+        image = webcam.get_image() # capture image
+        data = pygame.image.tostring(image,"RGB") # convert captured image to string, use RGB color scheme
+        connection.sendall(data)
+        time.sleep(0.1)
         connection.close()
-        server_socket.close()
-        camera.stop_preview()
-        print("Connection closed")
