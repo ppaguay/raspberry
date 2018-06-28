@@ -7,7 +7,6 @@ import time
 
 port = 5000
 pygame.init()
-ahora = datetime.now()
 f= open("log.txt","w+")
 f.write("tiempo1,tiempo2,tiempo4,tiempo4,tiempo5\r\n")     
    
