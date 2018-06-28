@@ -8,8 +8,8 @@ port = 5000
 pygame.init()
 ahora = datetime.now()
 f= open("log.txt","w+")
-f.write("tiempo1,tiempo2,tiempo4,tiempo5\r\n")     
-     f.write("%d,%d,%d\r\n" %(2,2,2))
+f.write("tiempo1,tiempo2,tiempo4,tiempo4,tiempo5\r\n")     
+   
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serversocket.bind(("",port))
