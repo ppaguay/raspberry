@@ -26,6 +26,7 @@ tiempo_2=ahora.microsecond  #Fin encedido de camara
 while True:
 
         connection, address = serversocket.accept()
+        f= open("log.txt","w+")
         tiempo_3=ahora.microsecond #Inicio captura imagen
         image = webcam.get_image() # capture image
         data = pygame.image.tostring(image,"RGB") # convert captured image to string, use RGB color scheme
@@ -33,6 +34,8 @@ while True:
         connection.sendall(data)
         tiempo_5=ahora.microsecond #Fin envio
         f.write("%d,%d,%d,%d,%d\r\n" %(tiempo_1,tiempo_2,tiempo_3,tiempo_4,tiempo_5))
-     	f.close() 
+     	
         time.sleep(0.1)
         connection.close()
+
+f.close() 
