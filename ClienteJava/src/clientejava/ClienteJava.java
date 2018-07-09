@@ -69,8 +69,9 @@ public class ClienteJava {
             PrintWriter guardar = new PrintWriter(fw);
 
             Webcam webcam = Webcam.getDefault();
-            webcam.setViewSize(new Dimension(176, 144));//windows
+            //webcam.setViewSize(new Dimension(176, 144));//windows
             //webcam.setViewSize(new Dimension(160, 120));//raspberry
+            webcam.setViewSize(new Dimension(320, 240));
             webcam.open();
            
             while (true) {
