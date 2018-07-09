@@ -3,11 +3,11 @@ import pygame
 import sys
 import time
 
-host = "192.168.1.200"
+host = "192.168.137.23"
 port=5000
 screen = pygame.display.set_mode((320,240),0)
 f= open("log_cliente.txt","w+")
-f.write("tiempo1,tiempo2,tiempo4,tiempo4\r\n")   
+f.write("Inicio Recibe Conexion,Tiempo recepcion Imagen,Tiempo Mostrar Imagen\r\n")   
 
 while True:    
     clientsocket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
