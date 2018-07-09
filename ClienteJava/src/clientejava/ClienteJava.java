@@ -47,7 +47,7 @@ public class ClienteJava {
     public static void main(String[] args) throws IOException {
         int bytesRead;
         int current = 0;
-        long tiempo1, tiempo2, tiempo3, tiempo4, tiempo5;
+        long tiempo1, tiempo2, tiempo3;
         
         String linea;
 
@@ -72,21 +72,22 @@ public class ClienteJava {
             //webcam.setViewSize(new Dimension(176, 144));//windows
             webcam.setViewSize(new Dimension(160, 120));//raspberry
             webcam.open();
-            tiempo1 = new java.util.Date().getTime();
+           
             while (true) {
                 try {
                     current++;
                     sock = new Socket(host, puerto);
-                    tiempo2 = new java.util.Date().getTime();
+                    tiempo1 = new java.util.Date().getTime();//Inicio obtenciòn de la imagen
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     ImageIO.write(webcam.getImage(), "jpg", baos);
                     byte[] mybytearray = baos.toByteArray();
-                    tiempo3 = new java.util.Date().getTime();
-                    System.out.println("Sending " + current + "(" + mybytearray.length + " bytes)");
+                    tiempo2 = new java.util.Date().getTime();//Fin Obtener Imagen, Inicio Tx
+                    
+                    //System.out.println("Sending " + current + "(" + mybytearray.length + " bytes)");
                     os = sock.getOutputStream();
                     os.write(mybytearray, 0, mybytearray.length);
                     os.flush();
-                    tiempo4 = new java.util.Date().getTime();
+                    tiempo3 = new java.util.Date().getTime();// Fin Tx
                     System.out.println("Done.");
                     if (os != null) {
                         os.close();
@@ -94,7 +95,7 @@ public class ClienteJava {
                     if (sock != null) {
                         sock.close();
                     }
-                    linea = (tiempo1 + "," + tiempo2 + "," + tiempo3 + "," + tiempo4 + "\n");                   
+                    linea = (tiempo1 + "," + tiempo2 + "," + tiempo3  + "\n");                   
                     guardar.write(linea);
                     guardar.flush();
                     Thread.sleep(30);
